@@ -8,9 +8,9 @@ import { RegisterPage } from './pages/RegisterPage';
 function GalleryApp() {
   return (
     <>
-      {/* <Gallery2 /> */}
+      <Gallery2 />
       {/* <LoginPage /> */}
-      <RegisterPage />
+      {/* <RegisterPage /> */}
     </>
   )
 }

@@ -8,9 +8,13 @@ import {
 } from 'mdb-react-ui-kit';
 
 export const RegisterPage = () => {
+  const onSubmitRegister=(event)=>{
+    event.preventDefault()
+    console.log("Esto es un submit");
+  }
   return (
     <section className='pageContainer__register mainPage'>
-      <form className='registerForm'>
+      <form className='registerForm' onSubmit={onSubmitRegister}>
       <MDBRow className='mb-4'>
         <MDBCol>
           <MDBInput id='form3Example1' label='Nombre' />

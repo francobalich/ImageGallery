@@ -4,10 +4,14 @@
   justify-content: center;
   width: 100%;
   height: 100vh;
+}
+.pageContainer__login {
   background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
 }
-
-.loginPage {
+.pageContainer__register{
+  background-image: linear-gradient(to right top, #1d235e, #322f85, #4e3aad, #6f43d4, #9649fb);
+}
+.loginForm,.registerForm {
   width: 400px;
   padding: 50px;
   background-color: white;

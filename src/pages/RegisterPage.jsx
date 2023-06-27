@@ -1,15 +1,8 @@
-import {
-  MDBInput,
-  MDBCol,
-  MDBRow,
-  MDBCheckbox,
-  MDBBtn,
-  MDBIcon
-} from 'mdb-react-ui-kit';
-import { useForm } from '../hooks/useForm';
-import { useContext } from 'react';
-import { UserContext } from '../context/UserContext';
-import { useNavigate } from 'react-router-dom';
+import { MDBInput, MDBCol, MDBRow, MDBBtn } from 'mdb-react-ui-kit';
+import { useForm } from '../hooks/useForm'
+import { useContext } from 'react'
+import { UserContext } from '../context/UserContext'
+import { useNavigate } from 'react-router-dom'
 
 const registerFormFields = {
   registerName: '',
@@ -21,7 +14,7 @@ const registerFormFields = {
 
 export const RegisterPage = () => {
   const { registerName, registerSurname, registerEmail, registerPassword, confirmPassword, onInputChange: onRegisterInputChange } = useForm(registerFormFields)
-  const { user, setUser } = useContext(UserContext)
+  const { setUser } = useContext(UserContext)
   const navigate = useNavigate()
 
   const onSubmitRegister = (event) => {

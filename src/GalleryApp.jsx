@@ -4,14 +4,16 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { Gallery } from './components/Gallery';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
+import { Route, Routes } from 'react-router-dom';
 
 function GalleryApp() {
   return (
-    <>
-      {/* <Gallery /> */}
-      {/* <LoginPage /> */}
-      <RegisterPage />
-    </>
+    <Routes>
+      <Route path='/' element={ <Gallery /> } />
+      <Route path='/auth/login' element={ <LoginPage /> } />
+      <Route path='/auth/register' element={ <RegisterPage /> } />
+      <Route path='/*' element={ <LoginPage /> } />
+    </Routes>
   )
 }
 

@@ -12,10 +12,21 @@ function GalleryApp() {
   const { user } = useContext(UserContext)
   return (
     <Routes>
-      <Route path='/*' element={<LoginPage />} />
-      <Route path='/auth/login' element={<LoginPage />} />
-      <Route path='/auth/register' element={<RegisterPage />} />
-      {(user !== undefined) ? <Route path='/' element={<GalleryPage />} /> : <></>
+      {
+        (user !== undefined) ?
+          (
+            <>
+              <Route path='/*' element={<GalleryPage />} />
+              <Route path='/' element={<GalleryPage />} />
+            </>
+
+          ) : (
+            <>
+              <Route path='/*' element={<LoginPage />} />
+              <Route path='/auth/login' element={<LoginPage />} />
+              <Route path='/auth/register' element={<RegisterPage />} />
+            </>
+          )
       }
     </Routes>
   )

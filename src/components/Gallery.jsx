@@ -1,7 +1,6 @@
 import { Image } from './Image';
 import imageData from '../data/images.json'
 import { useEffect, useState } from 'react';
-import { Column } from './Column';
 
 export const Gallery = () => {
   //Estado que vamos a estar manejando en este componte

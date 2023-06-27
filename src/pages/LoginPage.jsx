@@ -6,6 +6,9 @@ import {
   MDBBtn
 } from 'mdb-react-ui-kit';
 import { useForm } from '../hooks/useForm';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const loginFormFields = {
   loginEmail: '',
@@ -14,12 +17,18 @@ const loginFormFields = {
 
 export const LoginPage = () => {
   const { loginEmail, loginPassword, onInputChange: onLoginInputChange } = useForm(loginFormFields)
+  const { user, setUser } = useContext(UserContext)
+  const navigate = useNavigate()
+
   const loginSubmit = (event) => {
     event.preventDefault()
-    console.log({
-        email: loginEmail,
-        password: loginPassword
-    })
+    // Comprobar que si falta un dato no se envie
+    const data = {
+      email: loginEmail,
+      password: loginPassword
+    }
+    setUser(data)
+    navigate('/')
   }
   return (
     <section className='pageContainer__login mainPage'>

@@ -3,6 +3,7 @@ import { useForm } from '../hooks/useForm'
 import { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const registerFormFields = {
   registerName: '',
@@ -19,6 +20,33 @@ export const RegisterPage = () => {
 
   const onSubmitRegister = (event) => {
     event.preventDefault()
+    if(registerEmail ===""){
+      Swal.fire({
+        title: 'Error!',
+        text: 'Tiene que ingresar su email',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
+      return
+    }
+    if(registerPassword ===""){
+      Swal.fire({
+        title: 'Error!',
+        text: 'Tiene que ingresar su contraseña',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
+      return
+    }
+    if(registerPassword.length<5){
+      Swal.fire({
+        title: 'Error!',
+        text: 'La contraseña tiene que tener como minimo 5 caracteres',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
+      return
+    }
     const data = {
       name: registerName,
       surname: registerSurname,

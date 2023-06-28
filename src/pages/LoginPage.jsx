@@ -3,6 +3,7 @@ import { useForm } from '../hooks/useForm'
 import { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const loginFormFields = {
   loginEmail: '',
@@ -17,6 +18,34 @@ export const LoginPage = () => {
   const loginSubmit = (event) => {
     event.preventDefault()
     // Comprobar que si falta un dato no se envie
+    if(loginEmail ===""){
+      Swal.fire({
+        title: 'Error!',
+        text: 'Tiene que ingresar su email',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
+      return
+    }
+    if(loginPassword ===""){
+      Swal.fire({
+        title: 'Error!',
+        text: 'Tiene que ingresar su contraseña',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
+      return
+    }
+    if(loginPassword.length<5){
+      Swal.fire({
+        title: 'Error!',
+        text: 'La contraseña tiene que tener como minimo 5 caracteres',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
+      return
+    }
+
     const data = {
       email: loginEmail,
       password: loginPassword

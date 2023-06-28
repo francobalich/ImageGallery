@@ -7,6 +7,7 @@ export const GalleryPage = () => {
   const {user}= useContext(UserContext)
   useEffect(() => {
     console.log(user);
+    
   }, [])
   return (
     <>

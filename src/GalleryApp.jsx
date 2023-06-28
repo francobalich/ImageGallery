@@ -13,13 +13,16 @@ function GalleryApp() {
   return (
     <Routes>
       {
+        // Renderizado condicional, si el usuario se autentico
         (user !== undefined) ?
           (
+            // Rutas visibles (Autenticado)
             <>
               <Route path='/' element={<GalleryPage />} />
               <Route path='/*' element={<Navigate to="/" />} />
             </>
           ) : (
+            // Rutas visibles (No autenticado)
             <>
               <Route path='/auth/login' element={<LoginPage />} />
               <Route path='/auth/register' element={<RegisterPage />} />

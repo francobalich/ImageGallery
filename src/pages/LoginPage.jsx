@@ -1,9 +1,10 @@
 import { MDBInput, MDBBtn } from 'mdb-react-ui-kit'
 import { useForm } from '../hooks/useForm'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { UserContext } from '../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { InputLabel } from '../components/InputLabel'
 
 const loginFormFields = {
   loginEmail: '',
@@ -13,30 +14,30 @@ const loginFormFields = {
 export const LoginPage = () => {
   const { loginEmail, loginPassword, onInputChange: onLoginInputChange } = useForm(loginFormFields)
   const { setUser } = useContext(UserContext)
+  const [invalidForm, setInvalidForm] = useState({
+    invalidMail: false,
+    invalidPws: false
+  })
   const navigate = useNavigate()
 
   const loginSubmit = (event) => {
     event.preventDefault()
     // Comprobar que si falta un dato no se envie
-    if(loginEmail ===""){
-      Swal.fire({
-        title: 'Error!',
-        text: 'Tiene que ingresar su email',
-        icon: 'error',
-        confirmButtonText: 'Ok'
+    if (loginEmail === "") {
+      setInvalidForm({
+        invalidMail: true ,
+        invalidPws: false
       })
       return
     }
-    if(loginPassword ===""){
-      Swal.fire({
-        title: 'Error!',
-        text: 'Tiene que ingresar su contraseña',
-        icon: 'error',
-        confirmButtonText: 'Ok'
+    if (loginPassword === "") {
+      setInvalidForm({
+        invalidMail: false,
+        invalidPws: true
       })
       return
     }
-    if(loginPassword.length<5){
+    if (loginPassword.length < 5) {
       Swal.fire({
         title: 'Error!',
         text: 'La contraseña tiene que tener como minimo 5 caracteres',
@@ -56,6 +57,7 @@ export const LoginPage = () => {
   return (
     <section className='pageContainer__login mainPage'>
       <form className='loginForm' onSubmit={loginSubmit}>
+      <InputLabel text="Nombre de usuario" state={invalidForm.invalidMail} />
         <MDBInput
           className='mb-4 fondoBlanco'
           type='email'
@@ -65,6 +67,7 @@ export const LoginPage = () => {
           value={loginEmail}
           onChange={onLoginInputChange}
         />
+        <InputLabel text="Contraseña" state={invalidForm.invalidPws} />
         <MDBInput
           className='mb-4 fondoBlanco'
           type='password'
@@ -74,6 +77,7 @@ export const LoginPage = () => {
           value={loginPassword}
           onChange={onLoginInputChange}
         />
+        <p className='login__inputText'>(<span>*</span>) Los puntos son obligatorios</p>
         <MDBBtn type='submit' block>
           Iniciar Sesión
         </MDBBtn>

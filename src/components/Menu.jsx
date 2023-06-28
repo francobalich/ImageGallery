@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   MDBContainer,
   MDBNavbar,
@@ -11,14 +11,17 @@ import {
   MDBIcon,
   MDBCollapse
 } from 'mdb-react-ui-kit';
+import { UserProvider } from '../context/UserProvider';
+import { UserContext } from '../context/UserContext';
 
 export const Menu = () => {
+  const {user} = useContext(UserContext)
   const [showNavSecond, setShowNavSecond] = useState(false);
 
   return (
     <MDBNavbar expand='lg' light bgColor='light'>
       <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>ImageGallery</MDBNavbarBrand>
+        <MDBNavbarBrand href='#'>Bienvenido, {user.email}</MDBNavbarBrand>
         <MDBNavbarToggler
           aria-expanded='false'
           aria-label='Toggle navigation'

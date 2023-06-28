@@ -28,14 +28,17 @@ export const Menu = () => {
         </MDBNavbarToggler>
         <MDBCollapse navbar show={showNavSecond}>
           <MDBNavbarNav>
-            <Link to='/'>
-              <MDBNavbarLink active aria-current='page' href='#'>Gallery</MDBNavbarLink> 
+            <Link className='menu__link' to='/'>
+             Gallery 
             </Link>
-            <Link to='/auth/register'>
-              <MDBNavbarLink href='#'>Registrarse</MDBNavbarLink>
+            <Link className='menu__link' to='/image'>
+              Ver Imagen
             </Link>
-            <Link to='/auth/login'>
-              <MDBNavbarLink href='#'>Iniciar Sesión</MDBNavbarLink> 
+            <Link className='menu__link' to='/auth/register'>
+             Registrarse
+            </Link>
+            <Link className='menu__link' to='/auth/login'>
+              Iniciar Sesión
             </Link>
           </MDBNavbarNav>
         </MDBCollapse>

@@ -29,3 +29,14 @@
   padding: 10px;
   text-align: center;
 }
+.login__inputTitle{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.login__inputTitle>span,.login__inputText>span{
+  color: red;
+}
+.red{
+  color: red;
+}

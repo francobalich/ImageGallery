@@ -2,6 +2,9 @@ import { MDBInput, MDBCol, MDBRow, MDBBtn } from 'mdb-react-ui-kit';
 import { useForm } from '../hooks/useForm'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { useAuthStore } from '../hooks/useAuthStore';
+import { ErrorLabel } from '../components/ErrorLabel';
+import { useState } from 'react';
 
 const registerFormFields = {
   registerName: '',
@@ -10,40 +13,24 @@ const registerFormFields = {
   registerPassword: '',
   confirmPassword: ''
 }
+const formValidations={
+  registerName:[(value)=>value.length  >= 1, 'El nombre es obligatorio'],
+  registerSurname:[(value)=>value.length  >= 1, 'El apellido es obligatorio'],
+  registerEmail:[(value)=>value.includes('@'), 'El correo debe de tener un @'],
+  registerPassword:[(value)=>value.length  >= 6, 'La contraseña debe de tener más de 6 letras'],
+  confirmPassword:[(value)=>value.length  >= 6, 'La confirmación de la contraseña debe de tener más de 6 letras'],
+}
 
 export const RegisterPage = () => {
-  const { registerName, registerSurname, registerEmail, registerPassword, confirmPassword, onInputChange: onRegisterInputChange } = useForm(registerFormFields)
+  const { startRegister ,errorMessage} = useAuthStore()
+  const { registerName, registerSurname, registerEmail, registerPassword, confirmPassword, onInputChange: onRegisterInputChange, isFormValid, registerNameValid, registerSurnameValid, registerEmailValid, registerPasswordValid, confirmPasswordValid } = useForm(registerFormFields,formValidations)
   const navigate = useNavigate()
-
+  const [formSubmitted, setFormSubmitted] = useState(false)
   const onSubmitRegister = (event) => {
     event.preventDefault()
-    if(registerEmail ===""){
-      Swal.fire({
-        title: 'Error!',
-        text: 'Tiene que ingresar su email',
-        icon: 'error',
-        confirmButtonText: 'Ok'
-      })
-      return
-    }
-    if(registerPassword ===""){
-      Swal.fire({
-        title: 'Error!',
-        text: 'Tiene que ingresar su contraseña',
-        icon: 'error',
-        confirmButtonText: 'Ok'
-      })
-      return
-    }
-    if(registerPassword.length<5){
-      Swal.fire({
-        title: 'Error!',
-        text: 'La contraseña tiene que tener como minimo 5 caracteres',
-        icon: 'error',
-        confirmButtonText: 'Ok'
-      })
-      return
-    }
+    setFormSubmitted(true)
+
+    if(!isFormValid) return
     const data = {
       name: registerName,
       surname: registerSurname,
@@ -59,6 +46,7 @@ export const RegisterPage = () => {
       <form className='registerForm' onSubmit={onSubmitRegister}>
         <MDBRow className='mb-4'>
           <MDBCol>
+          <ErrorLabel text={ registerNameValid } state={!!registerNameValid && formSubmitted} />
             <MDBInput
               id='form3Example1'
               label='Nombre'
@@ -68,6 +56,7 @@ export const RegisterPage = () => {
             />
           </MDBCol>
           <MDBCol>
+          <ErrorLabel text={ registerSurnameValid } state={!!registerSurnameValid && formSubmitted} />
             <MDBInput
               id='form3Example2'
               label='Apellido'
@@ -77,6 +66,7 @@ export const RegisterPage = () => {
             />
           </MDBCol>
         </MDBRow>
+        <ErrorLabel text={ registerEmailValid } state={!!registerEmailValid && formSubmitted} />
         <MDBInput
           className='mb-4 fondoBlanco'
           type='email'
@@ -86,6 +76,7 @@ export const RegisterPage = () => {
           value={registerEmail}
           onChange={onRegisterInputChange}
         />
+        <ErrorLabel text={ registerPasswordValid } state={!!registerPasswordValid && formSubmitted} />
         <MDBInput
           className='mb-4 fondoBlanco'
           type='password'
@@ -95,6 +86,7 @@ export const RegisterPage = () => {
           value={registerPassword}
           onChange={onRegisterInputChange}
         />
+        <ErrorLabel text={ confirmPasswordValid } state={!!confirmPasswordValid && formSubmitted} />
         <MDBInput
           className='mb-4 fondoBlanco'
           type='password'
@@ -104,6 +96,7 @@ export const RegisterPage = () => {
           value={confirmPassword}
           onChange={onRegisterInputChange}
         />
+        
         <MDBBtn type='submit' className='mb-4' block>
           Registrarse
         </MDBBtn>

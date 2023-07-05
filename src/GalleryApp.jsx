@@ -6,27 +6,31 @@ import { RegisterPage } from './pages/RegisterPage';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { GalleryPage } from './pages/GalleryPage';
 import { ImagePage } from './pages/ImagePage';
+import { useAuthStore } from './hooks/useAuthStore';
+import { useEffect } from 'react';
 
 function GalleryApp() {
-  const user  ={}
+  const { status, } = useAuthStore()
+  console.log(status);
+
   return (
     <Routes>
       {
         // Renderizado condicional, si el usuario se autentico
-        (user !== undefined) ?
+        (status === 'not-authenticated') ?
           (
+            // Rutas visibles (No autenticado)
+            <>
+              <Route path='/auth/login' element={<LoginPage />} />
+              <Route path='/auth/register' element={<RegisterPage />} />
+              <Route path='/*' element={<Navigate to="/auth/login" />} />
+            </>
+          ) : (
             // Rutas visibles (Autenticado)
             <>
               <Route path='/' element={<GalleryPage />} />
               <Route path='/image' element={<ImagePage />} />
               <Route path='/*' element={<Navigate to="/" />} />
-            </>
-          ) : (
-            // Rutas visibles (No autenticado)
-            <>
-              <Route path='/auth/login' element={<LoginPage />} />
-              <Route path='/auth/register' element={<RegisterPage />} />
-              <Route path='/*' element={ <Navigate to="/auth/login" />} />
             </>
           )
       }

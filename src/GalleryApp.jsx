@@ -7,11 +7,16 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { GalleryPage } from './pages/GalleryPage';
 import { ImagePage } from './pages/ImagePage';
 import { useAuthStore } from './hooks/useAuthStore';
+import { useEffect } from 'react';
 
 function GalleryApp() {
-  const { status, } = useAuthStore()
+  const { status, checkData  } = useAuthStore()
   console.log(status);
 
+  useEffect(() => {
+    checkData()
+  }, [])
+  
   return (
     <Routes>
       {

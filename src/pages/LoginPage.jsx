@@ -47,10 +47,6 @@ export const LoginPage = () => {
       return
     }
 
-    const data = {
-      email: loginEmail,
-      password: loginPassword
-    }
     //setUser(data)
     startLogin({
       email: loginEmail,

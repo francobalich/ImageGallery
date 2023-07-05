@@ -12,7 +12,7 @@ const loginFormFields = {
 }
 
 export const LoginPage = () => {
-  const { startLogin, startRegister, errorMessage } = useAuthStore()
+  const { startLogin } = useAuthStore()
   const { loginEmail, loginPassword, onInputChange: onLoginInputChange } = useForm(loginFormFields)
   const [invalidForm, setInvalidForm] = useState({
     invalidMail: false,

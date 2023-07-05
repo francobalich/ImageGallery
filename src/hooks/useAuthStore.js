@@ -12,9 +12,9 @@ export const useAuthStore=()=>{
     const startLogin = async({email,password})=>{
         try {
             const data = {email,password}
+            dispatch(onLogin(data))
             const jsonData = await JSON.stringify(data)
             localStorage.setItem('user',jsonData)
-            dispatch(onLogin(data))
         } catch (error) {
             dispatch(onLogout('Credenciales incorrectas'))
             setTimeout(() => {
@@ -25,11 +25,11 @@ export const useAuthStore=()=>{
     const startRegister = async({name, surname, email,password})=>{
         try {
             const data = {name, surname, email,password}
+            dispatch(onLogin(data))
             const jsonData = await JSON.stringify(data)
             localStorage.setItem('user',jsonData)
-            dispatch(onLogin(data))
         } catch (error) {
-            dispatch(onLogout(error.response.data?.msg||'--'))
+            dispatch(onLogout('Credenciales incorrectas'))
             setTimeout(() => {
                 dispatch(crearErrorMessage())
             }, 10);
@@ -39,7 +39,10 @@ export const useAuthStore=()=>{
         try {
             const data = localStorage.getItem('user')
             const jsonData = await JSON.parse(data)
-            dispatch(onLogin(jsonData))
+            console.log(jsonData);
+            if(jsonData!==null){
+                dispatch(onLogin(jsonData))
+            }
         } catch (error) {
             dispatch(onLogout('Credenciales incorrectas'))
             setTimeout(() => {

@@ -25,7 +25,7 @@ export const LoginPage = () => {
     // Comprobar que si falta un dato no se envie
     if (loginEmail === "") {
       setInvalidForm({
-        invalidMail: true ,
+        invalidMail: true,
         invalidPws: false
       })
       return
@@ -46,18 +46,18 @@ export const LoginPage = () => {
       })
       return
     }
-
-    //setUser(data)
+    // Llamamos al startLogin del useAuthStore para guardar los datos en el store
     startLogin({
       email: loginEmail,
       password: loginPassword
-  })
+    })
+    // Redirigimos al usuario a la página principal
     navigate('/')
   }
   return (
     <section className='pageContainer__login mainPage'>
       <form className='loginForm' onSubmit={loginSubmit}>
-      <InputLabel text="Nombre de usuario" state={invalidForm.invalidMail} />
+        <InputLabel text="Nombre de usuario" state={invalidForm.invalidMail} />
         <MDBInput
           className='mb-4 fondoBlanco'
           type='email'

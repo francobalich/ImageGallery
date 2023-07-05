@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// Este es un archivo en donde se encuentra la lógica del estado que vamos a trabajar en el store de redux
 export const authSlice = createSlice({
     name: 'auth',
     initialState: {
@@ -7,6 +8,8 @@ export const authSlice = createSlice({
         user: {},
         errorMessage: undefined
     },
+    // Los reducers son funciones de dos parametros, un estado inicial y una accion
+    // Las acciones o actions son bloques de información que se envian desde la app al store
     reducers: {
         onLogin: (state, { payload }) => {
             state.status = 'authenticated'

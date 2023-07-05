@@ -1,17 +1,8 @@
 import { Link } from 'react-router-dom'
 import React, { useContext, useState } from 'react';
-import {
-  MDBContainer,
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarToggler,
-  MDBNavbarNav,
-  MDBNavbarItem,
-  MDBNavbarLink,
-  MDBIcon,
-  MDBCollapse
-} from 'mdb-react-ui-kit';
+import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarToggler, MDBNavbarNav, MDBIcon, MDBCollapse } from 'mdb-react-ui-kit';
 
+//TODO: Agregar cerrar sesión durante la clase
 export const Menu = () => {
   const user = {}
   const [showNavSecond, setShowNavSecond] = useState(false);
@@ -30,13 +21,13 @@ export const Menu = () => {
         <MDBCollapse navbar show={showNavSecond}>
           <MDBNavbarNav>
             <Link className='menu__link' to='/'>
-             Gallery 
+              Gallery
             </Link>
             <Link className='menu__link' to='/image'>
               Ver Imagen
             </Link>
             <Link className='menu__link' to='/auth/register'>
-             Registrarse
+              Registrarse
             </Link>
             <Link className='menu__link' to='/auth/login'>
               Iniciar Sesión

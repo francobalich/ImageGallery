@@ -13,6 +13,7 @@ const registerFormFields = {
   registerPassword: '',
   confirmPassword: ''
 }
+// Para usar las validaciones desde el useForm hay que declarar el siguiente objeto con funciones y mensajes
 const formValidations = {
   registerName: [(value) => value.length >= 1, 'El nombre es obligatorio'],
   registerSurname: [(value) => value.length >= 1, 'El apellido es obligatorio'],
@@ -44,6 +45,7 @@ export const RegisterPage = () => {
       return
     }
     
+    // Llamamos al startRegister del useAuthStore para guardar los datos en el store
     startRegister({
       name: registerName,
       surname: registerSurname,
@@ -53,6 +55,7 @@ export const RegisterPage = () => {
     })
     navigate('/')
   }
+  // Con <ErrorLabel></ErrorLabel> mostramos los errores del formulario
   return (
     <section className='pageContainer__register mainPage'>
       <form className='registerForm' onSubmit={onSubmitRegister}>

@@ -11,7 +11,7 @@ export const useAuthStore=()=>{
         try {
             const data = {email,password}
             localStorage.setItem('user',data.token)
-            dispatch(onLogin({name:data.name, uid: data.uid}))
+            dispatch(onLogin(data))
         } catch (error) {
             dispatch(onLogout('Credenciales incorrectas'))
             setTimeout(() => {

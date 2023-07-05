@@ -13,32 +13,44 @@ const registerFormFields = {
   registerPassword: '',
   confirmPassword: ''
 }
-const formValidations={
-  registerName:[(value)=>value.length  >= 1, 'El nombre es obligatorio'],
-  registerSurname:[(value)=>value.length  >= 1, 'El apellido es obligatorio'],
-  registerEmail:[(value)=>value.includes('@'), 'El correo debe de tener un @'],
-  registerPassword:[(value)=>value.length  >= 6, 'La contraseña debe de tener más de 6 letras'],
-  confirmPassword:[(value)=>value.length  >= 6, 'La confirmación de la contraseña debe de tener más de 6 letras'],
+const formValidations = {
+  registerName: [(value) => value.length >= 1, 'El nombre es obligatorio'],
+  registerSurname: [(value) => value.length >= 1, 'El apellido es obligatorio'],
+  registerEmail: [(value) => value.includes('@'), 'El correo debe de tener un @'],
+  registerPassword: [(value) => value.length >= 6, 'La contraseña debe de tener más de 6 letras'],
+  confirmPassword: [(value) => value.length >= 6, 'La confirmación de la contraseña debe de tener más de 6 letras'],
 }
 
 export const RegisterPage = () => {
-  const { startRegister ,errorMessage} = useAuthStore()
-  const { registerName, registerSurname, registerEmail, registerPassword, confirmPassword, onInputChange: onRegisterInputChange, isFormValid, registerNameValid, registerSurnameValid, registerEmailValid, registerPasswordValid, confirmPasswordValid } = useForm(registerFormFields,formValidations)
-  const navigate = useNavigate()
+  const { startRegister } = useAuthStore()
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const navigate = useNavigate()
+
+  const { registerName, registerSurname, registerEmail, registerPassword, confirmPassword, onInputChange: onRegisterInputChange, isFormValid, registerNameValid, registerSurnameValid, registerEmailValid, registerPasswordValid, confirmPasswordValid } = useForm(registerFormFields, formValidations)
+
   const onSubmitRegister = (event) => {
     event.preventDefault()
     setFormSubmitted(true)
 
-    if(!isFormValid) return
-    const data = {
+    if (!isFormValid) return
+
+    if (registerPassword !== confirmPassword) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Las contraseñas no coinciden.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
+      return
+    }
+    
+    startRegister({
       name: registerName,
       surname: registerSurname,
       email: registerEmail,
       password: registerPassword,
       confirmPassword: confirmPassword
-    }
-    //setUser(data)
+    })
     navigate('/')
   }
   return (
@@ -46,7 +58,7 @@ export const RegisterPage = () => {
       <form className='registerForm' onSubmit={onSubmitRegister}>
         <MDBRow className='mb-4'>
           <MDBCol>
-          <ErrorLabel text={ registerNameValid } state={!!registerNameValid && formSubmitted} />
+            <ErrorLabel text={registerNameValid} state={!!registerNameValid && formSubmitted} />
             <MDBInput
               id='form3Example1'
               label='Nombre'
@@ -56,7 +68,7 @@ export const RegisterPage = () => {
             />
           </MDBCol>
           <MDBCol>
-          <ErrorLabel text={ registerSurnameValid } state={!!registerSurnameValid && formSubmitted} />
+            <ErrorLabel text={registerSurnameValid} state={!!registerSurnameValid && formSubmitted} />
             <MDBInput
               id='form3Example2'
               label='Apellido'
@@ -66,7 +78,7 @@ export const RegisterPage = () => {
             />
           </MDBCol>
         </MDBRow>
-        <ErrorLabel text={ registerEmailValid } state={!!registerEmailValid && formSubmitted} />
+        <ErrorLabel text={registerEmailValid} state={!!registerEmailValid && formSubmitted} />
         <MDBInput
           className='mb-4 fondoBlanco'
           type='email'
@@ -76,7 +88,7 @@ export const RegisterPage = () => {
           value={registerEmail}
           onChange={onRegisterInputChange}
         />
-        <ErrorLabel text={ registerPasswordValid } state={!!registerPasswordValid && formSubmitted} />
+        <ErrorLabel text={registerPasswordValid} state={!!registerPasswordValid && formSubmitted} />
         <MDBInput
           className='mb-4 fondoBlanco'
           type='password'
@@ -86,7 +98,7 @@ export const RegisterPage = () => {
           value={registerPassword}
           onChange={onRegisterInputChange}
         />
-        <ErrorLabel text={ confirmPasswordValid } state={!!confirmPasswordValid && formSubmitted} />
+        <ErrorLabel text={confirmPasswordValid} state={!!confirmPasswordValid && formSubmitted} />
         <MDBInput
           className='mb-4 fondoBlanco'
           type='password'
@@ -96,7 +108,7 @@ export const RegisterPage = () => {
           value={confirmPassword}
           onChange={onRegisterInputChange}
         />
-        
+
         <MDBBtn type='submit' className='mb-4' block>
           Registrarse
         </MDBBtn>

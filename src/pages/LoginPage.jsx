@@ -1,7 +1,6 @@
 import { MDBInput, MDBBtn } from 'mdb-react-ui-kit'
 import { useForm } from '../hooks/useForm'
-import { useContext, useState } from 'react'
-import { UserContext } from '../context/UserContext'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { InputLabel } from '../components/InputLabel'
@@ -15,7 +14,6 @@ const loginFormFields = {
 export const LoginPage = () => {
   const { startLogin, startRegister, errorMessage } = useAuthStore()
   const { loginEmail, loginPassword, onInputChange: onLoginInputChange } = useForm(loginFormFields)
-  const { setUser } = useContext(UserContext)
   const [invalidForm, setInvalidForm] = useState({
     invalidMail: false,
     invalidPws: false

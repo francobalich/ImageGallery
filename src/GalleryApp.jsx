@@ -5,12 +5,10 @@ import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { GalleryPage } from './pages/GalleryPage';
-import { useContext } from 'react';
-import { UserContext } from './context/UserContext';
 import { ImagePage } from './pages/ImagePage';
 
 function GalleryApp() {
-  const { user } = useContext(UserContext)
+  const user  ={}
   return (
     <Routes>
       {

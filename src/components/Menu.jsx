@@ -11,11 +11,9 @@ import {
   MDBIcon,
   MDBCollapse
 } from 'mdb-react-ui-kit';
-import { UserProvider } from '../context/UserProvider';
-import { UserContext } from '../context/UserContext';
 
 export const Menu = () => {
-  const {user} = useContext(UserContext)
+  const user = {}
   const [showNavSecond, setShowNavSecond] = useState(false);
 
   return (

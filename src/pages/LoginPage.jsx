@@ -5,6 +5,7 @@ import { UserContext } from '../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { InputLabel } from '../components/InputLabel'
+import { useAuthStore } from '../hooks/useAuthStore'
 
 const loginFormFields = {
   loginEmail: '',
@@ -12,6 +13,7 @@ const loginFormFields = {
 }
 
 export const LoginPage = () => {
+  const { startLogin, startRegister, errorMessage } = useAuthStore()
   const { loginEmail, loginPassword, onInputChange: onLoginInputChange } = useForm(loginFormFields)
   const { setUser } = useContext(UserContext)
   const [invalidForm, setInvalidForm] = useState({
@@ -51,7 +53,11 @@ export const LoginPage = () => {
       email: loginEmail,
       password: loginPassword
     }
-    setUser(data)
+    //setUser(data)
+    startLogin({
+      email: loginEmail,
+      password: loginPassword
+  })
     navigate('/')
   }
   return (

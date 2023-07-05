@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { crearErrorMessage, onChecking, onLogin, onLogout, onLogoutCalendar } from "../store/store"
+import { crearErrorMessage, onChecking, onLogin, onLogout } from "../store/auth/authSlice"
 
 export const useAuthStore=()=>{
 

@@ -19,12 +19,12 @@ export const useAuthStore=()=>{
             }, 10);
         }
     }
-    const startRegister = async({name,email,password})=>{
+    const startRegister = async({name, surname, email,password})=>{
         dispatch(onChecking())
         try {
-            const data = {email,password}
+            const data = {name, surname, email,password}
             localStorage.setItem('user',data.token)
-            dispatch(onLogin({name:data.name, uid: data.uid}))
+            dispatch(onLogin(data))
         } catch (error) {
             dispatch(onLogout(error.response.data?.msg||'--'))
             setTimeout(() => {

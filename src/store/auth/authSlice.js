@@ -11,7 +11,7 @@ export const authSlice = createSlice({
     // Los reducers son funciones de dos parametros, un estado inicial y una accion
     // Las acciones o actions son bloques de información que se envian desde la app al store
     reducers: {
-        onLogin: (state, { payload }) => {
+        onLogin: (state,{payload}) => {
             state.status = 'authenticated'
             state.user = payload
             state.errorMessage = undefined
@@ -24,6 +24,9 @@ export const authSlice = createSlice({
         crearErrorMessage: (state) => {
             state.errorMessage = undefined
         }
+        /*crearErrorMessage: (state,{ payload }) => {
+            state.errorMessage = payload
+        }*/
     }
 });
 

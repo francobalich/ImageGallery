@@ -11,7 +11,6 @@ import { useEffect } from 'react';
 
 function GalleryApp() {
   const { status, checkData  } = useAuthStore()
-  console.log(status);
 
   useEffect(() => {
     checkData()

@@ -13,6 +13,7 @@ const registerFormFields = {
   registerPassword: '',
   confirmPassword: ''
 }
+
 // Para usar las validaciones desde el useForm hay que declarar el siguiente objeto con funciones y mensajes
 const formValidations = {
   registerName: [(value) => value.length >= 1, 'El nombre es obligatorio'],

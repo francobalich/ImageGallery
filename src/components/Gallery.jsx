@@ -2,12 +2,13 @@ import { Image } from "./Image";
 import imageData from "../data/images.json";
 import { useEffect, useRef, useState } from "react";
 import { getAllImages, startUploadFiles } from "../utils/fileManager";
+import { useAuthStore } from "../hooks/useAuthStore";
 
 export const Gallery = () => {
   //Estado que vamos a estar manejando en este componte
   const [columns, setColumns] = useState([]);
   const [imagesData, setImagesData] = useState(<></>);
-
+  const { user } = useAuthStore()
   //Función para agregar las imágenes en una lista de <Image /> y devolverla
   const loadImages = () => {
     let images = [];
@@ -38,17 +39,18 @@ export const Gallery = () => {
       </>
     ));
   };
-  const onFileInputChange = ({ target }) => {
+  const onFileInputChange = async({ target }) => {
     if (target.files === 0) return;
 
-    startUploadFiles(target.files);
+    const path = await startUploadFiles(target.files)
+    console.log(path);
   };
   const fileInputRef = useRef();
   // Hook que indica el código que se va a ejecutar solo cuando se cree el componente
   useEffect(() => {
     const images = loadImages();
     setColumns(images);
-    getAllImages()
+    getAllImages(user.email)
     //console.log(columnsData);
   }, []);
 

@@ -1,9 +1,8 @@
 import axios from 'axios'
-import { getEnvVariables } from '../helper/getEnvVariables'
-const {VITE_API_URL} = getEnvVariables()
+const API_URL="https://api.francobalich.com/api/"
 
 const userAPI = axios.create({
-    baseURL:VITE_API_URL
+    baseURL:API_URL
 })
 
 userAPI.interceptors.request.use(config=>{

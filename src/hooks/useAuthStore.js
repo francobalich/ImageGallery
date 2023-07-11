@@ -2,6 +2,7 @@
 // useSelector: Es un hook que nos permite leer información del store usando una función selectora.
 import { useDispatch, useSelector } from "react-redux"
 import { crearErrorMessage, onLogin, onLogout } from "../store/auth/authSlice"
+import userAPI from "../api/userApi"
 
 // Este es un custom hook que sirve para centralizar el manejo del store
 // Otra alternativa es crear un thunk con funciones que trabajaran con las acciones
@@ -11,7 +12,11 @@ export const useAuthStore=()=>{
 
     const startLogin = async({email,password})=>{
         try {
-            const data = {email,password}
+            const user= {
+                email,
+                password
+            }
+            const {data} = await userAPI.post('/login',user)
             dispatch(onLogin(data))
             const jsonData = await JSON.stringify(data)
             localStorage.setItem('user',jsonData)

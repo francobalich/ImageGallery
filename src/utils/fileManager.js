@@ -1,3 +1,4 @@
+import userAPI from "../api/userApi"
 import { fileUpload } from "./fileUpload"
 
 export const startUploadFiles = async (files = []) => {
@@ -10,5 +11,13 @@ export const startUploadFiles = async (files = []) => {
   return photosUrls
 }
 
-export const getAllImages = async (files = []) => {
+export const getAllImages = async (email) => {
+  try {
+    const { data } = await userAPI.post('/images', { email: email })
+    return data.images
+  } catch (error) {
+    console.log("Error al cargar las imagenes");
+    return []
+  }
+
 }

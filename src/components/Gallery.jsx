@@ -3,6 +3,7 @@ import imageData from "../data/images.json";
 import { useEffect, useRef, useState } from "react";
 import { getAllImages, startUploadFiles } from "../utils/fileManager";
 import { useAuthStore } from "../hooks/useAuthStore";
+import { AddImageForm } from "./AddImageForm";
 
 export const Gallery = () => {
   //Estado que vamos a estar manejando en este componte
@@ -39,7 +40,7 @@ export const Gallery = () => {
       </>
     ));
   };
-  const onFileInputChange = async({ target }) => {
+  const onFileInputChange = async ({ target }) => {
     if (target.files === 0) return;
 
     const path = await startUploadFiles(target.files)
@@ -61,25 +62,11 @@ export const Gallery = () => {
   }, [columns]);
 
   return (
-    <div className="row galleryImage">
-      {imagesData}
-      <div>
-        <input
-          type="file"
-          multiple
-          ref={fileInputRef}
-          onChange={onFileInputChange}
-          style={{ display: "none" }}
-        />
-        <button
-          color="primary"
-          onClick={() => {
-            fileInputRef.current.click();
-          }}
-        >
-          Haga clic aca para subir una imagen
-        </button>
+    <>
+      <div className="row galleryImage">
+        {imagesData}
       </div>
-    </div>
+      <AddImageForm user={user} />
+    </>
   );
 };

@@ -14,6 +14,7 @@ export const Gallery = () => {
     imageData.forEach(data => {
       images.push(<Image
         key={i}
+        id={data.id}
         image={data.src}
         alt={data.alt} />)
       i++

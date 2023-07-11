@@ -1,5 +1,5 @@
 import axios from 'axios'
-const API_URL="https://api.francobalich.com/api/"
+const API_URL="https://api.francobalich.com/api"
 
 const userAPI = axios.create({
     baseURL:API_URL

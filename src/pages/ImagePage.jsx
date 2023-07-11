@@ -2,14 +2,15 @@ import React, { useContext, useEffect, useState } from "react";
 import { Gallery } from "../components/Gallery";
 import { Menu } from "../components/Menu";
 import { useParams } from "react-router-dom";
-import imageData from "../data/images.json";
 import { Image } from "../components/Image";
+import { useImageStore } from "../hooks/useImageStore";
 
 export const ImagePage = () => {
   const params = useParams();
   const [img, setImg] = useState({});
+  const { images:imageList } = useImageStore()
   useEffect(() => {
-    const img = imageData.filter((x) => x.id === params.id)[0];
+    const img = imageList.filter((x) => x.id === params.id)[0];
     setImg(img);
   }, []);
   return (

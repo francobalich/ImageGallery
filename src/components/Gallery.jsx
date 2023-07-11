@@ -39,7 +39,7 @@ export const Gallery = () => {
           {columns.slice(cantidadImgs, cantidadImgs * 2)}
         </div>
         <div className="col-lg-4 col-md-12 mb-4 mb-lg-0 ">
-          {columns.slice(cantidadImgs * 2, columns.length - 1)}
+          {columns.slice(cantidadImgs * 2, columns.length )}
         </div>
       </>
     ));
@@ -48,14 +48,12 @@ export const Gallery = () => {
   // Hook que indica el código que se va a ejecutar cuando se cambie el estado de columns
   useEffect(() => {
     generateImages();
-    //console.log(columnsData);
   }, [columns]);
 
   useEffect(() => {
     getAllImages(user.email).then((imageList) => {
       const images = loadImages(imageList)
       setColumns(images)
-      console.log(imageList);
     })
   }, [imageList])
   return (

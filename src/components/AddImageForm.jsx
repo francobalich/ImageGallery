@@ -19,7 +19,7 @@ export const AddImageForm = ({ status, setStatus, setImageList }) => {
   const [path, setPath] = useState()
   const fileInputRef = useRef();
 
-  const { imgDataTitle, imgDataTitleValid, onInputChange: onImgInputChange } = useForm(imgDataFormFields, formValidations)
+  const { imgDataTitle, imgDataTitleValid, onInputChange: onImgInputChange, onResetForm} = useForm(imgDataFormFields, formValidations)
 
   const onFileInputChange = async ({ target }) => {
     if (target.files === 0) return;
@@ -31,9 +31,14 @@ export const AddImageForm = ({ status, setStatus, setImageList }) => {
     setFormSubmitted(true)
     const url = await uploadFile(path[0])
     const images=await getAllImages(user.email)
-    setImageList(images)
     setStatus(false)
+    setPath()
+    
+    setFormSubmitted(false)
+    onResetForm()
+    
     saveImages(user.email,imgDataTitle,url)
+    setImageList(images)
   }
 
   const onCancel = () => {

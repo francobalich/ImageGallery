@@ -32,7 +32,7 @@ function GalleryApp() {
             // Rutas visibles (Autenticado)
             <>
               <Route path='/' element={<GalleryPage />} />
-              <Route path='/image' element={<ImagePage />} />
+              <Route path='/image/:id' element={<ImagePage />} />
               <Route path='/*' element={<Navigate to="/" />} />
             </>
           )

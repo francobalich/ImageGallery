@@ -12,7 +12,7 @@ const imgDataFormFields = {
 const formValidations = {
   imgDataTitle: [(value) => value.length >= 1, 'El titulo es obligatorio'],
 }
-export const AddImageForm = () => {
+export const AddImageForm = ({status, setStatus}) => {
   const { user } = useAuthStore()
   const [formSubmitted, setFormSubmitted] = useState(false)
   const { imgDataTitle, imgDataTitleValid, onInputChange: onImgInputChange } = useForm(imgDataFormFields, formValidations)
@@ -28,12 +28,16 @@ export const AddImageForm = () => {
     setFormSubmitted(true)
     console.log("Se envio el form");
   }
+  const onCancel = ()=>{
+    setStatus(false)
+  }
   useEffect(() => {
     getAllImages(user.email)
   }, [])
 
   const fileInputRef = useRef();
   return (
+    (status)?(
     <section className='formAlert'>
       <form className='loginForm' onSubmit={onSubmitData}>
         <InputLabel text="Ingrese el titulo de la imagen" state={!!imgDataTitleValid && formSubmitted} />
@@ -61,16 +65,16 @@ export const AddImageForm = () => {
             block>
             Haga clic aca para subir una imagen
           </MDBBtn>
-          
-
         </div>
         <MDBBtn type='submit' color='success' className='mb-4' block>
           Guardar Imagen
         </MDBBtn>
-        <MDBBtn type='button' color='danger' className='mb-4' block>
+        <MDBBtn type='button' color='danger' className='mb-4' block onClick={onCancel}>
           Cerrar
         </MDBBtn>
       </form>
     </section>
+    ):
+    <></>
   )
 }

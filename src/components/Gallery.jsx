@@ -2,10 +2,12 @@ import { Image } from "./Image";
 import imageData from "../data/images.json";
 import { useEffect, useState } from "react";
 import { AddImageForm } from "./AddImageForm";
+import { MDBBtn } from 'mdb-react-ui-kit';
 
 export const Gallery = () => {
   //Estado que vamos a estar manejando en este componte
   const [columns, setColumns] = useState([]);
+  const [statusForm, setStatusForm] = useState(false);
   const [imagesData, setImagesData] = useState(<></>);
   //Función para agregar las imágenes en una lista de <Image /> y devolverla
   const loadImages = () => {
@@ -52,11 +54,20 @@ export const Gallery = () => {
   }, [columns]);
 
   return (
-    <>
+    <section className="galleryComponent">
       <div className="row galleryImage">
         {imagesData}
       </div>
-      <AddImageForm />
-    </>
+      <AddImageForm status={statusForm} setStatus={setStatusForm} />
+      <MDBBtn type='button'
+        style={{ "width": "500px", "margin": "auto" }}
+        className='mb-4'
+        onClick={() => {
+          setStatusForm(true)
+        }}
+        block>
+        Haga clic aca para subir una imagen
+      </MDBBtn>
+    </section>
   );
 };

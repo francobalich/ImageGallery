@@ -12,8 +12,7 @@ export const Gallery = () => {
   const [columns, setColumns] = useState([]);
   const [statusForm, setStatusForm] = useState(false);
   const [imagesData, setImagesData] = useState(<></>);
-  const [imageList, setImageList] = useState([])
-  const { getAllImages } = useImageStore()
+  const { images:imageList , getAllImages } = useImageStore()
   //Función para agregar las imágenes en una lista de <Image /> y devolverla
   const loadImages = (imageData) => {
     let images = [];
@@ -70,7 +69,7 @@ export const Gallery = () => {
         block>
         Haga clic aca para subir una imagen
       </MDBBtn>
-      <AddImageForm status={statusForm} setStatus={setStatusForm} setImageList={setImageList} />
+      <AddImageForm status={statusForm} setStatus={setStatusForm} />
     </section>
   );
 };

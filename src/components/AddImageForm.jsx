@@ -12,7 +12,7 @@ const imgDataFormFields = {
 const formValidations = {
   imgDataTitle: [(value) => value.length >= 1, 'El titulo es obligatorio'],
 }
-export const AddImageForm = ({ status, setStatus, setImageList }) => {
+export const AddImageForm = ({ status, setStatus}) => {
   const { user } = useAuthStore()
   const {getAllImages,  saveImages, uploadFile } = useImageStore();
   const [formSubmitted, setFormSubmitted] = useState(false)
@@ -38,7 +38,6 @@ export const AddImageForm = ({ status, setStatus, setImageList }) => {
     onResetForm()
     
     saveImages(user.email,imgDataTitle,url)
-    setImageList(images)
   }
 
   const onCancel = () => {

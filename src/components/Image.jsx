@@ -1,11 +1,14 @@
-import reactLogo from '../assets/react.png'
+import { Link } from "react-router-dom";
+import reactLogo from "../assets/react.png";
 
-export const Image = ({image=reactLogo,alt="imagen"}) => {
+export const Image = ({id=0, image = reactLogo, alt = "imagen" }) => {
   return (
-    <img
-      src={image}
-      className="w-100 shadow-1-strong rounded mb-4"
-      alt={alt}
-    />
-  )
-}
+    <Link to={`/image/${id}`}>
+      <img
+        src={image}
+        className="w-100 shadow-1-strong rounded mb-4"
+        alt={alt}
+      />
+    </Link>
+  );
+};

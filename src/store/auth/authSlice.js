@@ -6,6 +6,7 @@ export const authSlice = createSlice({
     initialState: {
         status: 'not-authenticated', // 'authenticated', 'not-authenticated'
         user: {},
+        imgs:{},
         errorMessage: undefined
     },
     // Los reducers son funciones de dos parametros, un estado inicial y una accion
@@ -14,11 +15,13 @@ export const authSlice = createSlice({
         onLogin: (state,{payload}) => {
             state.status = 'authenticated'
             state.user = payload
+            imgs:{}
             state.errorMessage = undefined
         },
         onLogout: (state, { payload }) => {
             state.status = 'not-authenticated'
             state.user = {}
+            imgs:{}
             state.errorMessage = payload
         },
         crearErrorMessage: (state) => {

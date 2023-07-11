@@ -29,7 +29,8 @@ export const useAuthStore=()=>{
     }
     const startRegister = async({name, surname, email,password})=>{
         try {
-            const data = {name, surname, email,password}
+            const user = {name, surname, email,password}
+            const {data} = await userAPI.post('/register',user)
             dispatch(onLogin(data))
             const jsonData = await JSON.stringify(data)
             localStorage.setItem('user',jsonData)

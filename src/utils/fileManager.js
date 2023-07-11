@@ -9,3 +9,6 @@ export const startUploadFiles = async (files = []) => {
   const photosUrls = await Promise.all(fileUploadPromises)
   return photosUrls
 }
+
+export const getAllImages = async (files = []) => {
+}

@@ -1,7 +1,7 @@
 import { Image } from "./Image";
 import imageData from "../data/images.json";
 import { useEffect, useRef, useState } from "react";
-import { startUploadFiles } from "../utils/fileManager";
+import { getAllImages, startUploadFiles } from "../utils/fileManager";
 
 export const Gallery = () => {
   //Estado que vamos a estar manejando en este componte
@@ -48,6 +48,7 @@ export const Gallery = () => {
   useEffect(() => {
     const images = loadImages();
     setColumns(images);
+    getAllImages()
     //console.log(columnsData);
   }, []);
 

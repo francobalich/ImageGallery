@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AddImageForm } from "./AddImageForm";
 import { MDBBtn } from 'mdb-react-ui-kit';
 import { useAuthStore } from "../hooks/useAuthStore";
-import { getAllImages } from "../utils/fileManager";
+import { useImageStore } from "../hooks/useImageStore";
 
 export const Gallery = () => {
   //Estado que vamos a estar manejando en este componte
@@ -13,6 +13,7 @@ export const Gallery = () => {
   const [statusForm, setStatusForm] = useState(false);
   const [imagesData, setImagesData] = useState(<></>);
   const [imageList, setImageList] = useState([])
+  const { getAllImages } = useImageStore()
   //Función para agregar las imágenes en una lista de <Image /> y devolverla
   const loadImages = (imageData) => {
     let images = [];

@@ -6,7 +6,7 @@ export const authSlice = createSlice({
     initialState: {
         status: 'not-authenticated', // 'authenticated', 'not-authenticated'
         user: {},
-        imgs:{},
+        images:[],
         errorMessage: undefined
     },
     // Los reducers son funciones de dos parametros, un estado inicial y una accion
@@ -15,17 +15,20 @@ export const authSlice = createSlice({
         onLogin: (state,{payload}) => {
             state.status = 'authenticated'
             state.user = payload
-            imgs:{}
+            images:[]
             state.errorMessage = undefined
         },
         onLogout: (state, { payload }) => {
             state.status = 'not-authenticated'
             state.user = {}
-            imgs:{}
+            images:[]
             state.errorMessage = payload
         },
         crearErrorMessage: (state) => {
             state.errorMessage = undefined
+        },
+        onLoadImages: (state,{payload}) => {
+            images:payload
         }
         /*crearErrorMessage: (state,{ payload }) => {
             state.errorMessage = payload
@@ -34,4 +37,4 @@ export const authSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { onLogin, onLogout, crearErrorMessage } = authSlice.actions;
+export const { onLogin, onLogout, crearErrorMessage, onLoadImages } = authSlice.actions;

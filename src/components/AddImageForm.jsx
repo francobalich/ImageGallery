@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
-import { getAllImages, saveImages, uploadFile } from '../utils/fileManager';
+import { useRef, useState } from 'react'
 import { useAuthStore } from '../hooks/useAuthStore';
 import '../styles/AddImageForm.css'
 import { MDBBtn, MDBInput } from 'mdb-react-ui-kit';
 import { InputLabel } from './InputLabel';
 import { useForm } from '../hooks/useForm';
+import { useImageStore } from '../hooks/useImageStore';
 
 const imgDataFormFields = {
   imgDataTitle: ''
@@ -14,6 +14,7 @@ const formValidations = {
 }
 export const AddImageForm = ({ status, setStatus, setImageList }) => {
   const { user } = useAuthStore()
+  const {getAllImages,  saveImages, uploadFile } = useImageStore();
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [path, setPath] = useState()
   const fileInputRef = useRef();

@@ -6,12 +6,27 @@
   height: 100vh;
 }
 .pageContainer__login {
-  background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+  background-image: linear-gradient(
+    to right top,
+    #051937,
+    #004d7a,
+    #008793,
+    #00bf72,
+    #a8eb12
+  );
 }
-.pageContainer__register{
-  background-image: linear-gradient(to right top, #1d235e, #322f85, #4e3aad, #6f43d4, #9649fb);
+.pageContainer__register {
+  background-image: linear-gradient(
+    to right top,
+    #1d235e,
+    #322f85,
+    #4e3aad,
+    #6f43d4,
+    #9649fb
+  );
 }
-.loginForm,.registerForm {
+.loginForm,
+.registerForm {
   width: 400px;
   padding: 50px;
   background-color: white;
@@ -20,33 +35,46 @@
   -webkit-box-shadow: -2px -4px 43px 9px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: -2px -4px 43px 9px rgba(0, 0, 0, 0.2);
 }
-.galleryImage{
+.galleryImage {
   padding: 15px;
 }
-.menu__link{
+.menu__link {
   text-decoration: none;
   color: black;
   padding: 10px;
   text-align: center;
 }
-.login__inputTitle{
+.login__inputTitle {
   font-weight: bold;
   font-size: 20px;
 }
 
-.login__inputTitle>span,.login__inputText>span{
+.login__inputTitle > span,
+.login__inputText > span {
   color: red;
 }
-.red{
+.red {
   color: red;
 }
-.hide{
+.hide {
   display: none;
 }
-.imgSection{
-  padding:20px 80px ;
+.imgSection {
+  padding: 20px 80px;
 }
-.galleryComponent{
+.galleryComponent {
   display: flex;
   flex-direction: column;
+}
+.btnAddImage {
+  font-size: 45px;
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  border-radius: 50%;
+  box-shadow: 25px 25px 88px 0px rgba(0, 0, 0, 0.33);
+  -webkit-box-shadow: 25px 25px 88px 0px rgba(0, 0, 0, 0.33);
+  -moz-box-shadow: 25px 25px 88px 0px rgba(0, 0, 0, 0.33);
 }

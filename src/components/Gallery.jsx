@@ -2,7 +2,7 @@ import { Image } from "./Image";
 //import imageData from "../data/images.json";
 import { useEffect, useState } from "react";
 import { AddImageForm } from "./AddImageForm";
-import { MDBBtn } from 'mdb-react-ui-kit';
+import { MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
 import { useAuthStore } from "../hooks/useAuthStore";
 import { useImageStore } from "../hooks/useImageStore";
 
@@ -61,13 +61,12 @@ export const Gallery = () => {
         {imagesData}
       </div>
       <MDBBtn type='button'
-        style={{ "width": "500px", "margin": "auto" }}
-        className='mb-4'
+        className='btnAddImage'
         onClick={() => {
           setStatusForm(true)
         }}
         block>
-        Haga clic aca para subir una imagen
+        <MDBIcon fas icon="upload" />
       </MDBBtn>
       <AddImageForm status={statusForm} setStatus={setStatusForm} />
     </section>

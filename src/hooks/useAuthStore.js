@@ -45,7 +45,6 @@ export const useAuthStore = () => {
         try {
             const data = localStorage.getItem('user')
             const jsonData = await JSON.parse(data)
-            console.log(jsonData);
             if (jsonData !== null) {
                 dispatch(onLogin(jsonData))
             }

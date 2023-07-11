@@ -1,15 +1,31 @@
-import { image } from "@cloudinary/url-gen/qualifiers/source"
 import userAPI from "../api/userApi"
-import { fileUpload } from "./fileUpload"
 
-export const startUploadFiles = async (files = []) => {
-  const fileUploadPromises = []
+export const uploadFile = async (file) => {
 
-  for (const file of files) {
-    fileUploadPromises.push(fileUpload(file))
+  if (!file) throw new Error('No hay ningun archivo.')
+  if (!file) return null
+
+  const cloudUrl = `https://api.cloudinary.com/v1_1/dzmkef9sr/upload`
+
+  const formData = new FormData()
+  formData.append('upload_preset', 'curso-react')
+  formData.append('file', file)
+
+  try {
+    const resp = await fetch(cloudUrl, {
+      method: 'POST',
+      body: formData
+    })
+
+    if (!resp.ok) throw new Error('No se pudo subir la imagen')
+    const cloudResp = await resp.json()
+
+    return cloudResp.secure_url
+  } catch (error) {
+    console.log(error)
+    //throw new Error(error.message)
+    return null
   }
-  const photosUrls = await Promise.all(fileUploadPromises)
-  return photosUrls[0]
 }
 
 export const getAllImages = async (email) => {

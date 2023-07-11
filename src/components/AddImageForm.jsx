@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { getAllImages, saveImages, startUploadFiles } from '../utils/fileManager';
+import { getAllImages, saveImages, uploadFile } from '../utils/fileManager';
 import { useAuthStore } from '../hooks/useAuthStore';
 import '../styles/AddImageForm.css'
 import { MDBBtn, MDBInput } from 'mdb-react-ui-kit';
@@ -28,7 +28,7 @@ export const AddImageForm = ({ status, setStatus, setImageList }) => {
   const onSubmitData = async(event) => {
     event.preventDefault()
     setFormSubmitted(true)
-    const url = await startUploadFiles(path)
+    const url = await uploadFile(path[0])
     const images=await getAllImages(user.email)
     setImageList(images)
     setStatus(false)
@@ -55,7 +55,6 @@ export const AddImageForm = ({ status, setStatus, setImageList }) => {
           <div>
             <input
               type="file"
-              multiple
               ref={fileInputRef}
               onChange={onFileInputChange}
               style={{ display: "none" }}

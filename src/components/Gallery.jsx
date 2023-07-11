@@ -58,7 +58,6 @@ export const Gallery = () => {
       <div className="row galleryImage">
         {imagesData}
       </div>
-      <AddImageForm status={statusForm} setStatus={setStatusForm} />
       <MDBBtn type='button'
         style={{ "width": "500px", "margin": "auto" }}
         className='mb-4'
@@ -68,6 +67,7 @@ export const Gallery = () => {
         block>
         Haga clic aca para subir una imagen
       </MDBBtn>
+      <AddImageForm status={statusForm} setStatus={setStatusForm} />
     </section>
   );
 };

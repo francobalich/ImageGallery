@@ -46,3 +46,7 @@
 .imgSection{
   padding:20px 80px ;
 }
+.galleryComponent{
+  display: flex;
+  flex-direction: column;
+}

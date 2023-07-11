@@ -15,20 +15,20 @@ export const authSlice = createSlice({
         onLogin: (state,{payload}) => {
             state.status = 'authenticated'
             state.user = payload
-            images:[]
+            state.images=[]
             state.errorMessage = undefined
         },
         onLogout: (state, { payload }) => {
             state.status = 'not-authenticated'
             state.user = {}
-            images:[]
+            state.images=[]
             state.errorMessage = payload
         },
         crearErrorMessage: (state) => {
             state.errorMessage = undefined
         },
         onLoadImages: (state,{payload}) => {
-            images:payload
+            state.images=payload
         }
         /*crearErrorMessage: (state,{ payload }) => {
             state.errorMessage = payload

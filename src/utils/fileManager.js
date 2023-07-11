@@ -1,3 +1,4 @@
+import { image } from "@cloudinary/url-gen/qualifiers/source"
 import userAPI from "../api/userApi"
 import { fileUpload } from "./fileUpload"
 
@@ -8,7 +9,7 @@ export const startUploadFiles = async (files = []) => {
     fileUploadPromises.push(fileUpload(file))
   }
   const photosUrls = await Promise.all(fileUploadPromises)
-  return photosUrls
+  return photosUrls[0]
 }
 
 export const getAllImages = async (email) => {
@@ -19,5 +20,24 @@ export const getAllImages = async (email) => {
     console.log("Error al cargar las imagenes");
     return []
   }
-
+}
+export const saveImages = async (email, title, path) => {
+  try {
+    const resp = await getAllImages(email)
+    const newId = `${resp.length + 1}`;
+    const images = [
+      ...resp,
+      {
+        id: newId,
+        src: path,
+        alt: title,
+      }
+    ]
+    const { data } = await userAPI.put('/images', { email: email, images: images })
+    console.log(data);
+    return data.images
+  } catch (error) {
+    console.log("Error al cargar las imagenes");
+    return []
+  }
 }

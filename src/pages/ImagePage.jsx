@@ -16,7 +16,7 @@ export const ImagePage = () => {
     <>
       <Menu />
       <section className="imgSection">
-        <h1>Imagen id: {img.id}</h1>
+        <h1>{img.alt}</h1>
         <Image id={img.id} image={img.src} alt={img.alt} />
       </section>
     </>

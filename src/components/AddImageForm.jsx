@@ -19,7 +19,7 @@ export const AddImageForm = ({ status, setStatus }) => {
   const { user } = useAuthStore()
   const { getAllImages, saveImages, uploadFile } = useImageStore();
   const [formSubmitted, setFormSubmitted] = useState(false)
-  const [path, setPath] = useState()
+  const [path, setPath] = useState("")
   const fileInputRef = useRef();
 
   const { imgDataTitle, imgDataTitleValid, onInputChange: onImgInputChange, onResetForm } = useForm(imgDataFormFields, formValidations)
@@ -34,6 +34,7 @@ export const AddImageForm = ({ status, setStatus }) => {
   const onSubmitData = async (event) => {
     event.preventDefault()
     setFormSubmitted(true)
+    // Agregando un foreach se puede guardar varias imagenes
     const url = await uploadFile(path[0])
     const images = await getAllImages(user.email)
     setStatus(false)
@@ -62,6 +63,7 @@ export const AddImageForm = ({ status, setStatus }) => {
             value={imgDataTitle}
             onChange={onImgInputChange}
           />
+          <p>{(path!=="")?`${path.length}-Ya subio su imagen.`:""}</p>
           <div>
             <input
               type="file"

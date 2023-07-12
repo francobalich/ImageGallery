@@ -5,9 +5,11 @@ import { useAuthStore } from '../hooks/useAuthStore';
 
 //TODO: Agregar cerrar sesión en clase 6
 export const Menu = () => {
-  const { user } = useAuthStore()
+  const { user, startLogout } = useAuthStore()
   const [showNavSecond, setShowNavSecond] = useState(false);
-
+  const onLogout = () => {
+    startLogout()
+  }
   return (
     <MDBNavbar expand='lg' light bgColor='light'>
       <MDBContainer fluid>
@@ -24,15 +26,9 @@ export const Menu = () => {
             <Link className='menu__link' to='/'>
               Gallery
             </Link>
-            <Link className='menu__link' to='/image'>
-              Ver Imagen
-            </Link>
-            <Link className='menu__link' to='/auth/register'>
-              Registrarse
-            </Link>
-            <Link className='menu__link' to='/auth/login'>
-              Iniciar Sesión
-            </Link>
+            <a className='menu__link menu__linkEnd' onClick={onLogout}>
+              Cerrar Sesión
+            </a>
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBContainer>

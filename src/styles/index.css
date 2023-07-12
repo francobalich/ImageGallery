@@ -44,6 +44,9 @@
   padding: 10px;
   text-align: center;
 }
+.menu__linkEnd{
+  margin-left: auto;
+}
 .login__inputTitle {
   font-weight: bold;
   font-size: 20px;

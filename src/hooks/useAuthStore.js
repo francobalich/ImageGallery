@@ -16,6 +16,7 @@ export const useAuthStore = () => {
                 email,
                 password
             }
+            // Llamada a la API para comprobar si el usuario existe (Login)
             const { data } = await userAPI.post('/login', user)
             dispatch(onLogin(data))
             const jsonData = await JSON.stringify(data)
@@ -30,6 +31,7 @@ export const useAuthStore = () => {
     const startRegister = async ({ name, surname, email, password }) => {
         try {
             const user = { name, surname, email, password }
+            // Llamada a la API para registar un usuario (Register)
             const { data } = await userAPI.post('/register', user)
             dispatch(onLogin(data))
             const jsonData = await JSON.stringify(data)

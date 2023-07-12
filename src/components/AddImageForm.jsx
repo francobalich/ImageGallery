@@ -6,40 +6,45 @@ import { InputLabel } from './InputLabel';
 import { useForm } from '../hooks/useForm';
 import { useImageStore } from '../hooks/useImageStore';
 
+// Objetos con información inicial
 const imgDataFormFields = {
   imgDataTitle: ''
 }
 const formValidations = {
   imgDataTitle: [(value) => value.length >= 1, 'El titulo es obligatorio'],
 }
-export const AddImageForm = ({ status, setStatus}) => {
+
+// Componente funcional para el formulario que permite agregar mas imagenes.
+export const AddImageForm = ({ status, setStatus }) => {
   const { user } = useAuthStore()
-  const {getAllImages,  saveImages, uploadFile } = useImageStore();
+  const { getAllImages, saveImages, uploadFile } = useImageStore();
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [path, setPath] = useState()
   const fileInputRef = useRef();
 
-  const { imgDataTitle, imgDataTitleValid, onInputChange: onImgInputChange, onResetForm} = useForm(imgDataFormFields, formValidations)
+  const { imgDataTitle, imgDataTitleValid, onInputChange: onImgInputChange, onResetForm } = useForm(imgDataFormFields, formValidations)
 
+  // Evento que sucede cuando el usuario carga una imagen por el input
   const onFileInputChange = async ({ target }) => {
     if (target.files === 0) return;
     setPath(target.files)
   }
 
-  const onSubmitData = async(event) => {
+  // Evento que sucede cuando el usuario envia el formulario
+  const onSubmitData = async (event) => {
     event.preventDefault()
     setFormSubmitted(true)
     const url = await uploadFile(path[0])
-    const images=await getAllImages(user.email)
+    const images = await getAllImages(user.email)
     setStatus(false)
     setPath()
-    
+
     setFormSubmitted(false)
     onResetForm()
-    
-    saveImages(user.email,imgDataTitle,url)
-  }
 
+    saveImages(user.email, imgDataTitle, url)
+  }
+  //Evento que sucede cuando el usuario hace clic en cancelar
   const onCancel = () => {
     setStatus(false)
   }

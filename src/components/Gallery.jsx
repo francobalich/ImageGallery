@@ -12,7 +12,7 @@ export const Gallery = () => {
   const [columns, setColumns] = useState([]);
   const [statusForm, setStatusForm] = useState(false);
   const [imagesData, setImagesData] = useState(<></>);
-  const { images:imageList , getAllImages } = useImageStore()
+  const { images: imageList, getAllImages } = useImageStore()
   //Función para agregar las imágenes en una lista de <Image /> y devolverla
   const loadImages = (imageData) => {
     let images = [];
@@ -38,7 +38,7 @@ export const Gallery = () => {
           {columns.slice(cantidadImgs, cantidadImgs * 2)}
         </div>
         <div className="col-lg-4 col-md-12 mb-4 mb-lg-0 ">
-          {columns.slice(cantidadImgs * 2, columns.length )}
+          {columns.slice(cantidadImgs * 2, columns.length)}
         </div>
       </>
     ));
@@ -48,7 +48,7 @@ export const Gallery = () => {
   useEffect(() => {
     generateImages();
   }, [columns]);
-
+  // Hook que indica el código que se va a ejecutar cuando se cambie el store de imagenes (Redux)
   useEffect(() => {
     getAllImages(user.email).then((imageList) => {
       const images = loadImages(imageList)

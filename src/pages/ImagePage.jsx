@@ -8,11 +8,15 @@ import { useImageStore } from "../hooks/useImageStore";
 export const ImagePage = () => {
   const params = useParams();
   const [img, setImg] = useState({});
-  const { images:imageList } = useImageStore()
+  // Se usa al imageStore para obtener las imagenes actuales del usuario
+  // Se renombre images por imageList (Solo en este archivo)
+  const { images: imageList } = useImageStore()
+
   useEffect(() => {
     const img = imageList.filter((x) => x.id === params.id)[0];
     setImg(img);
   }, []);
+
   return (
     <>
       <Menu />

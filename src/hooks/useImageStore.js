@@ -2,14 +2,15 @@ import { useDispatch, useSelector } from "react-redux"
 import userAPI from "../api/userApi"
 import { onLoadImages } from "../store/auth/authSlice"
 
+// CustomHook para centralizar el manejo de APIs e imagenes
 export const useImageStore = () => {
   const { images } = useSelector(state => state.auth)
   const dispatch = useDispatch()
-
+  // Llamada a la API Cloudinary para almacenar imagenes (fetch)
   const uploadFile = async (file) => {
     if (!file) throw new Error('No hay ningun archivo.')
     if (!file) return null
-
+    // El "dzmkef9sr" pertenece a mi propia nube en cloudinary, ustedes lo pueden modificar
     const cloudUrl = `https://api.cloudinary.com/v1_1/dzmkef9sr/upload`
     const formData = new FormData()
     formData.append('upload_preset', 'curso-react')
@@ -30,7 +31,7 @@ export const useImageStore = () => {
       return null
     }
   }
-
+  // Llamada a nuestra API obtener todos las imagenes que tiene un usuario por su mail
   const getAllImages = async (email) => {
     try {
       const { data } = await userAPI.post('/images', { email: email })
@@ -41,6 +42,7 @@ export const useImageStore = () => {
       return []
     }
   }
+  // Llamada a nuestra API para guardar una imagen subida por un usuario por su mail
   const saveImages = async (email, title, path) => {
     try {
       const resp = await getAllImages(email)
@@ -61,7 +63,7 @@ export const useImageStore = () => {
       return []
     }
   }
-  return{
+  return {
     images,
     uploadFile,
     saveImages,

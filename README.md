@@ -2,6 +2,7 @@
 
 En este repositorio van a encontrar un proyecto que conciste en una galeria de imagenes realizado en el curso de React JS dictado por el profesor *Franco Adrian Balich*
 
+Proyecto hecho unicamente con fines educativos.
 # Descarga
 
 Podrán descargar el repositorio al hacer clic en el botón verde `<> Code` de Github y hacer clic en `Download ZIP` para que se les descargue todo el repositorio.

@@ -6,12 +6,13 @@ import { onLoadImages } from "../store/auth/authSlice"
 export const useImageStore = () => {
   const { images } = useSelector(state => state.auth)
   const dispatch = useDispatch()
+  const cloudName = "dzmkef9sr"
   // Llamada a la API Cloudinary para almacenar imagenes (fetch)
   const uploadFile = async (file) => {
     if (!file) throw new Error('No hay ningun archivo.')
     if (!file) return null
     // El "dzmkef9sr" pertenece a mi propia nube en cloudinary, ustedes lo pueden modificar
-    const cloudUrl = `https://api.cloudinary.com/v1_1/dzmkef9sr/upload`
+    const cloudUrl = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
     const formData = new FormData()
     formData.append('upload_preset', 'curso-react')
     formData.append('file', file)

@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        status: 'not-authenticated', // 'authenticated', 'not-authenticated'
+        status: 'not-authenticated', // 'authenticated', 'not-authenticated', 'checking'
         user: {},
         images: [],
         errorMessage: undefined
@@ -12,6 +12,9 @@ export const authSlice = createSlice({
     // Los reducers son funciones de dos parametros, un estado inicial y una accion
     // Las acciones o actions son bloques de información que se envian desde la app al store
     reducers: {
+        onChecking:(state) => {
+            state.status = 'checking'
+        },
         onLogin: (state, { payload }) => {
             state.status = 'authenticated'
             state.user = payload
@@ -39,6 +42,7 @@ export const authSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+    onChecking,
     onLogin,
     onLogout,
     crearErrorMessage,

@@ -50,11 +50,12 @@ export const Gallery = () => {
   }, [columns]);
   // Hook que indica el código que se va a ejecutar cuando se cambie el store de imagenes (Redux)
   useEffect(() => {
+    console.log("object");
     getAllImages(user.email).then((imageList) => {
       const images = loadImages(imageList)
       setColumns(images)
     })
-  }, [imageList])
+  }, [statusForm])
   return (
     <section className="galleryComponent">
       <div className="row galleryImage">

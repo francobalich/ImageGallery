@@ -37,13 +37,13 @@ export const AddImageForm = ({ status, setStatus }) => {
     // Agregando un foreach se puede guardar varias imagenes
     const url = await uploadFile(path[0])
     const images = await getAllImages(user.email)
-    setStatus(false)
     setPath()
 
     setFormSubmitted(false)
     onResetForm()
 
-    saveImages(user.email, imgDataTitle, url)
+    await saveImages(user.email, imgDataTitle, url)
+    setStatus(false)
   }
   //Evento que sucede cuando el usuario hace clic en cancelar
   const onCancel = () => {
@@ -63,7 +63,7 @@ export const AddImageForm = ({ status, setStatus }) => {
             value={imgDataTitle}
             onChange={onImgInputChange}
           />
-          <p>{(path!=="")?`${path.length}-Ya subio su imagen.`:""}</p>
+          <p>{(path !== "") ? `Ya subio su imagen.` : ""}</p>
           <div>
             <input
               type="file"

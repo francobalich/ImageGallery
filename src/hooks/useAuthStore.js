@@ -19,6 +19,7 @@ export const useAuthStore = () => {
             }
             // Llamada a la API para comprobar si el usuario existe (Login)
             const { data } = await userAPI.post('/login', user)
+            data.images=[]
             dispatch(onLogin(data))
             const jsonData = await JSON.stringify(data)
             localStorage.setItem('user', jsonData)
@@ -35,6 +36,7 @@ export const useAuthStore = () => {
             const user = { name, surname, email, password }
             // Llamada a la API para registar un usuario (Register)
             const { data } = await userAPI.post('/register', user)
+            data.images=[]
             dispatch(onLogin(data))
             const jsonData = await JSON.stringify(data)
             localStorage.setItem('user', jsonData)

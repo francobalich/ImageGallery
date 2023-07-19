@@ -9,7 +9,6 @@ export const useImageStore = () => {
   const { VITE_CLOUDINARY_URL } = getEnvVariables()
   const { images } = useSelector(state => state.auth)
   const dispatch = useDispatch()
-  const cloudName = "dzmkef9sr"
   // Llamada a la API Cloudinary para almacenar imagenes (fetch)
   const uploadFile = async (file) => {
     if (!file) throw new Error('No hay ningun archivo.')

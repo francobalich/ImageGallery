@@ -5,10 +5,9 @@ import axios from 'axios'
 import { getEnvVariables } from '../helpers/getEnvVariables'
 // Se lee el VITE_API_URL del archivo .env
 const { VITE_API_URL } = getEnvVariables()
-const API_URL = VITE_API_URL
 
 const userAPI = axios.create({
-    baseURL: API_URL
+    baseURL: VITE_API_URL
 })
 
 userAPI.interceptors.request.use(config => {
@@ -18,5 +17,4 @@ userAPI.interceptors.request.use(config => {
     }
     return config
 })
-
 export default userAPI

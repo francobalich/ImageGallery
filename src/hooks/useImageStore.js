@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from "react-redux"
 import userAPI from "../api/userApi"
 import { onLoadImages } from "../store/auth/authSlice"
+import { getEnvVariables } from "../helpers/getEnvVariables"
 
 // CustomHook para centralizar el manejo de APIs e imagenes
 export const useImageStore = () => {
+  // Se lee el VITE_CLOUDINARY_URL del archivo .env
+  const { VITE_CLOUDINARY_URL } = getEnvVariables()
   const { images } = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const cloudName = "dzmkef9sr"
@@ -11,13 +14,11 @@ export const useImageStore = () => {
   const uploadFile = async (file) => {
     if (!file) throw new Error('No hay ningun archivo.')
     if (!file) return null
-    // El "dzmkef9sr" pertenece a mi propia nube en cloudinary, ustedes lo pueden modificar
-    const cloudUrl = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
     const formData = new FormData()
     formData.append('upload_preset', 'curso-react')
     formData.append('file', file)
     try {
-      const resp = await fetch(cloudUrl, {
+      const resp = await fetch(VITE_CLOUDINARY_URL, {
         method: 'POST',
         body: formData
       })

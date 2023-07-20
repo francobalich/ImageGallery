@@ -54,7 +54,7 @@ export const Gallery = () => {
       const images = loadImages(imageList)
       setColumns(images)
     })
-  }, [statusForm])  //Todo:Comentar en clase 7 (Antes era imageList)
+  }, [statusForm])
   return (
     <section className="galleryComponent">
       <div className="row galleryImage">

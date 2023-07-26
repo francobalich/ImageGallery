@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react';
 import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarToggler, MDBNavbarNav, MDBIcon, MDBCollapse } from 'mdb-react-ui-kit';
 import { useAuthStore } from '../hooks/useAuthStore';
 
-//TODO: Agregar cerrar sesión en clase 6
 export const Menu = () => {
   const { user, startLogout } = useAuthStore()
   const [showNavSecond, setShowNavSecond] = useState(false);
@@ -13,7 +12,7 @@ export const Menu = () => {
   return (
     <MDBNavbar expand='lg' light bgColor='light'>
       <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>Bienvenido, {user.name || "Amigo"}</MDBNavbarBrand>
+        <MDBNavbarBrand href='#'>¡Bienvenido, {user.name || "Amigo"}!</MDBNavbarBrand>
         <MDBNavbarToggler
           aria-expanded='false'
           aria-label='Toggle navigation'

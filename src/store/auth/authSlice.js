@@ -15,7 +15,7 @@ export const authSlice = createSlice({
         onChecking:(state) => {
             state.status = 'checking'
         },
-        onLogin: (state, { payload }) => {
+        onLogin: (state, {payload}) => {
             state.status = 'authenticated'
             state.user = payload
             state.images = []

@@ -23,6 +23,22 @@ export const useAuthStore = () => {
             dispatch(onLogin(data))
             const jsonData = await JSON.stringify(data)
             localStorage.setItem('user', jsonData)
+
+            // userAPI.post('/login', user)
+            // .then((resp)=>{
+            //     resp.data.images=[]
+            //     dispatch(onLogin(data))
+            //     JSON.stringify(data)
+            //     .then((jsonData)=>{
+            //         localStorage.setItem('user', jsonData)
+            //     })
+            //     .catch(()=>{
+            //         console.log("Error");
+            //     })
+            // })
+            // .catch(()=>{
+            //     console.log("Error");
+            // })
         } catch (error) {
             dispatch(onLogout('Credenciales incorrectas'))
             setTimeout(() => {
